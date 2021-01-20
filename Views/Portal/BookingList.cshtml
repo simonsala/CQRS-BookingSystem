@@ -1,0 +1,38 @@
+﻿@using CQRS_BookingSystem.Events;
+@model List<BookingMade>;
+
+<div class="container">
+    <h3 class="mt-5 mb-5">Booking List</h3>
+</div>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">CheckInDate</th>
+            <th scope="col">CheckOutDate</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (BookingMade c in Model)
+        {
+            <tr>
+                <td>@c.BookingId</td>
+                <td>@c.Name</td>
+                <td>@c.Phone</td>
+                <td>@c.Email</td>
+                <td>@c.CheckInDate</td>
+                <td>@c.CheckOutDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@{
+    Html.RenderPartial("PortalLinks");
+}

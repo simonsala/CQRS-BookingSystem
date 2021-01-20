@@ -1,0 +1,58 @@
+﻿@using CQRS_BookingSystem.Commands;
+@model OperationViewModel
+@{
+    ViewData["Title"] = "Booking Creation";
+}
+
+@{
+    MakeBooking cdm = new MakeBooking();
+}
+
+<h3 class="mt-2 mb-4">@ViewData["Title"]</h3>
+
+@if (Model.Result == true)
+{
+    <div class="alert alert-success" role="alert">
+        Success! Booking has been created
+    </div>
+}
+
+
+
+<form asp-controller="Portal" asp-action="Book" method="post">
+    <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="Enter name" name="Name" value="@cdm.Name">
+        <small id="nameHelp" class="form-text text-muted">Please enter a your full name.</small>
+    </div>
+    <div class="form-group">
+        <label for="phoneInput">Phone</label>
+        <input type="number" class="form-control" id="phoneInput" aria-describedby="phoneHelp" placeholder="Enter phone" name="Phone" value="@cdm.Phone">
+        <small id="phoneHelp" class="form-text text-muted">Please enter a your phone number.</small>
+    </div>
+    <div class="form-group">
+        <label for="emailInput">Email address</label>
+        <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email" name="Email" value="@cdm.Email">
+        <small id="emailHelp" class="form-text text-muted">Please enter a correct email.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="dateInInput">Date In</label>
+        <input type="text" class="form-control" id="dateInInput" aria-describedby="dateInHelp" placeholder="Date In" name="CheckInData" value="@cdm.CheckInDate">
+        <small id="dateInHelp" class="form-text text-muted">Please select a correct date.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="dateOutInput">Date Out</label>
+        <input type="text" class="form-control" id="dateOutInput" aria-describedby="dateOutHelp" placeholder="Date Out" name="CheckOutData" value="@cdm.CheckOutDate">
+        <small id="dateOutHelp" class="form-text text-muted">Please select a correct date.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+@{
+    Html.RenderPartial("PortalLinks");
+}

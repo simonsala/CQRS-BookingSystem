@@ -1,0 +1,43 @@
+﻿
+@using CQRS_BookingSystem.Commands;
+@model OperationViewModel;
+@{
+    ViewData["Title"] = "Booking Cancellation Page";
+}
+
+@{
+    CancelBooking cdm = new CancelBooking();
+}
+
+<h3 class="mt-2 mb-4">@ViewData["Title"]</h3>
+
+
+@if (Model.InProcess == true)
+{
+    if (Model.Result == true)
+    {
+        <div class="alert alert-success" role="alert">
+            Success! Booking has been cancelled
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+}
+
+<form asp-controller="Portal" asp-action="CancelBooking" method="post">
+    <div class="form-group">
+        <label for="bookingIDInput">Booking Id</label>
+        <input type="text" class="form-control" id="bookingIDInput" aria-describedby="bookingIDHelp" placeholder="Enter Booking Id" name="BookingId" value="@cdm.BookingId">
+        <small id="bookingIDHelp" class="form-text text-muted">Please enter a Booking Id.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Cancel</button>
+</form>
+
+
+@{
+    Html.RenderPartial("PortalLinks");
+}
